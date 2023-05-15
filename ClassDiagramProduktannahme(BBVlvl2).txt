@@ -1,0 +1,24 @@
+classDiagram
+
+    class Angebot{
+        +long angebotErstellen(cID,geraeteTyp,zustandsList)
+        +long angebotAnpassen(angebotID,cID,geraeteTyp,zustandsList)
+        +void angebotVerwerfen(angebotID,cID,geraeteTyp)
+        +List[Angebot] listAngebote(cID)
+    }
+    
+    class PreisBerechnung{
+        +Preis berechnePreisFuerZustand(geraeteTyp,zustandsList)
+        +void  produktpreisAnpassen(geraeteTyp,berechnungsvorschrrift)
+        +List[Berechnungsvorschriften] listBerechnungvorschriften(geraeteTyp)
+    }
+
+    class Produkt{
+        +long produktStandortAnpassen(produktID,Standtort)
+        +long produktErstellen(geraeteTyp,zustandsList)
+    }
+
+    Angebot ..> PreisBerechnung
+    Angebot -- Produkt
+
+
