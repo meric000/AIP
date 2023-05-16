@@ -1,0 +1,36 @@
+classDiagram
+
+    class ProduktWeiterverarbeiten{
+        +verarbeitungsart bestimmeVerarbeitungsart(produktID)
+        +void erstelleVerarbeitungsauftrag(verarbeitungsart, produktID)
+    }
+
+    class ReclcingVerwaltung{
+        +List[Ersatzteil] bestimmeVerwendbareTeile(produktID)
+        +void erstelleNeuenERPEintrag(ersatzteilList)
+        +void erstelleReclclingAuftrag(ersatzteilID,Anzahl)
+    }
+
+    class VerkaufVerwanlung{
+        +Preis ermittleVerkaufspreis(produktID)
+        +void produktEinpflegen(produktID)
+        +void erstelleNeuenVersandauftrag(produktID, adresse)
+    }
+
+    class AufbreitungsVerwaltung{
+        +ersatzteilList ermittleFehlendeErsatzteile(produktID)
+        +ersatzteilList pruefeLagerbestand(ersatzteilList)
+        +void erstelleBestellungsAuftrag(ersatzteilList)
+        +void erstelleReclclingAuftrag(ersatzteilID,Anzahl)
+        +void erstelleVerkaufsauftrag(produktID,Preis)
+
+    }
+
+    ProduktWeiterverarbeiten -- ReclcingVerwaltung
+    ProduktWeiterverarbeiten -- VerkaufVerwanlung
+    AufbreitungsVerwaltung -- ReclcingVerwaltung
+    AufbreitungsVerwaltung -- VerkaufVerwanlung
+    ProduktWeiterverarbeiten-- AufbreitungsVerwaltung
+
+    note for ReclcingVerwaltung "ERP-System"
+    note for VerkaufVerwanlung "Verkaufsplattform"

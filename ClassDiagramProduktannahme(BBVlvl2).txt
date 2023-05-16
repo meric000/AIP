@@ -5,20 +5,30 @@ classDiagram
         +long angebotAnpassen(angebotID,cID,geraeteTyp,zustandsList)
         +void angebotVerwerfen(angebotID,cID,geraeteTyp)
         +List[Angebot] listAngebote(cID)
+        +void bezahleKunde(cID,Preis)
     }
     
     class PreisBerechnung{
         +Preis berechnePreisFuerZustand(geraeteTyp,zustandsList)
-        +void  produktpreisAnpassen(geraeteTyp,berechnungsvorschrrift)
-        +List[Berechnungsvorschriften] listBerechnungvorschriften(geraeteTyp)
+        +void  produktpreisAnpassen(geraeteTyp,berechnungsvorschrift)
+        +List[Berechnungsvorschrift] listBerechnungvorschriften(geraeteTyp)
+        +void erstelleBerechnungsvorschrift(geraeteTyp, berechnungsvorschrift)
+        +void entferneBerechnungsvorschrift(geraeteTyp, berechnungsvorschrift)
     }
 
+    
     class Produkt{
         +long produktStandortAnpassen(produktID,Standtort)
         +long produktErstellen(geraeteTyp,zustandsList)
+        +void zustandsListAnpassen(zustandsList)
     }
 
     Angebot ..> PreisBerechnung
     Angebot -- Produkt
 
+    note for Angebot "Finanz-Interface"
+    note for Produkt  "Mitarbeiter-UI"
+    note for Angebot "ERS Kunden-UI"
+    note for Produkt "Produktverarbeitung"
+    note for PreisBerechnung  "Mitarbeiter-UI"
 
