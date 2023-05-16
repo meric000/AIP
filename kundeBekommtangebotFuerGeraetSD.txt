@@ -1,0 +1,24 @@
+sequenceDiagram
+    actor Kunde
+    participant KUI as Kunden-UI
+    participant A as Angebot
+    actor MA asMitarbeiter
+    participant PB as Preisberechnung
+
+
+
+    Kunde->>KUI: Kunde gibt Produktdetail an
+    activate Kunde
+    activate KUI
+    KUI ->> A: POST(geraeteTyp,zustandsList)
+    activate A
+    A ->> A: angebotErstellen(cID,geraeteTyp,zustandsList)
+    A ->> PB: berechnePreisFuerZustand(geraeteTyp,zustandsList)
+    activate PB
+    PB ->> A: Preis
+    deactivate PB
+    A ->> KUI: Angebot
+    deactivate A
+    KUI->>Kunde:Zeigt das Angebot
+    deactivate KUI
+    deactivate Kunde
