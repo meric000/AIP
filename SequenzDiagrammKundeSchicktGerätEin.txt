@@ -1,0 +1,37 @@
+sequenceDiagram
+    actor Kunde
+    participant P as Produkt 
+    participant KUI as Kunden-UI
+    actor MA as Mitarbeiter
+    participant PB as Preisberechnung
+    participant A as Angebot
+    participant PW as ProduktWeiterverarbeitung
+   
+
+    Kunde ->> P: Kunde schick gerät ein
+    activate Kunde
+    deactivate Kunde
+    P ->> P: produktErstellen(geraeteTyp,zustandsList)
+    activate P
+    P ->> MA: Mitarbeiter schaut sich Zustand des Geräts genauer an
+    deactivate P
+    activate MA
+    MA ->> PB: Mitarbeiter gibt zustand des Geräts an
+    deactivate MA
+    activate PB
+    PB ->> PB: berechnePreisFuerZustand(geraeteTyp,zustandsList)
+    PB ->> A: angebotAnpassen(angebotID,cID,geraeteTyp,zustandsList)
+    deactivate PB
+    activate A
+    A ->> KUI: Finales angebot wird dem Kunden gezeigt
+    deactivate A
+    activate KUI
+    KUI ->> Kunde: Kunde nimmt finales Angebot an
+    activate Kunde
+    deactivate KUI
+    Kunde ->> PW: bestimmeVerarbeitungsart(produktID)
+    deactivate Kunde
+    activate PW
+    deactivate PW
+
+
