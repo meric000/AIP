@@ -2,7 +2,6 @@ sequenceDiagram
     actor Kunde
     participant KUI as Kunden-UI
     participant A as Angebot
-    actor MA asMitarbeiter
     participant PB as Preisberechnung
 
 
@@ -22,3 +21,4 @@ sequenceDiagram
     KUI->>Kunde:Zeigt das Angebot
     deactivate KUI
     deactivate Kunde
+    Note left of Kunde: Wenn der Kunde den Preis aktzeptiert<br/> -> Kunde schickt Gerät ein Sequenz<br/>Sonst wird das Angebot gelöscht

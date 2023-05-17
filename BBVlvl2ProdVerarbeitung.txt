@@ -1,8 +1,7 @@
 classDiagram
 
     class ProduktWeiterverarbeiten{
-        +verarbeitungsart bestimmeVerarbeitungsart(produktID)
-        +void erstelleVerarbeitungsauftrag(verarbeitungsart, produktID)
+        +void erstelleVerarbeitungsauftrag(produktID)
     }
 
     class ReclcingVerwaltung{

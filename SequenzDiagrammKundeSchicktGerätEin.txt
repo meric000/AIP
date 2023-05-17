@@ -1,36 +1,43 @@
 sequenceDiagram
     actor Kunde
-    participant P as Produkt 
+    participant L as Lager 
     participant KUI as Kunden-UI
     actor MA as Mitarbeiter
-    participant PB as Preisberechnung
+    participant P as Produkt
     participant A as Angebot
+    participant PB as Preisberechnung
     participant PW as ProduktWeiterverarbeitung
+    
    
 
-    Kunde ->> P: Kunde schick gerät ein
-    activate Kunde
-    deactivate Kunde
-    P ->> P: produktErstellen(geraeteTyp,zustandsList)
+    Kunde ->> L: Kunde schick gerät ein
+    %%P ->> P: produktErstellen(geraeteTyp,zustandsList)
+    activate L
+    L ->> MA: Mitarbeiter schaut sich Zustand des Geräts genauer an
+    deactivate L
+    
+    MA ->> P: zustandsListAnpassen(zustandsList,verarbeitungsart)
+    
     activate P
-    P ->> MA: Mitarbeiter schaut sich Zustand des Geräts genauer an
-    deactivate P
-    activate MA
-    MA ->> PB: Mitarbeiter gibt zustand des Geräts an
-    deactivate MA
-    activate PB
-    PB ->> PB: berechnePreisFuerZustand(geraeteTyp,zustandsList)
-    PB ->> A: angebotAnpassen(angebotID,cID,geraeteTyp,zustandsList)
-    deactivate PB
+    P ->> A: angebotAktualisieren()
     activate A
-    A ->> KUI: Finales angebot wird dem Kunden gezeigt
+    deactivate P
+    A ->> PB: berechnePreisFuerZustand(geraeteTyp,zustandsList)
+    activate PB
+    PB ->> A: Preis
+    deactivate PB
+    A ->> KUI: Angebot
     deactivate A
     activate KUI
-    KUI ->> Kunde: Kunde nimmt finales Angebot an
-    activate Kunde
+    KUI ->> Kunde: Angebot darstellen
+    
+    Kunde ->> KUI: Kunde nimmt Angebot an
+
+    KUI ->> A: uebermitteleProduktAnWeiterverarbeitung(angebotID)
+    activate A
     deactivate KUI
-    Kunde ->> PW: bestimmeVerarbeitungsart(produktID)
-    deactivate Kunde
+    A ->> PW: erstelleVerarbeitungsauftrag(produktID)
+    deactivate A
     activate PW
     deactivate PW
 

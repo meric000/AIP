@@ -2,10 +2,12 @@ classDiagram
 
     class Angebot{
         +long angebotErstellen(cID,geraeteTyp,zustandsList)
-        +long angebotAnpassen(angebotID,cID,geraeteTyp,zustandsList)
-        +void angebotVerwerfen(angebotID,cID,geraeteTyp)
+        +long angebotAnpassen(angebotID)
+        +void angebotVerwerfen(angebotID)
         +List[Angebot] listAngebote(cID)
         +void bezahleKunde(cID,Preis)
+        +void angebotAktualisieren()
+        +void uebermitteleProduktAnWeiterverarbeitung(angebotID)
     }
     
     class PreisBerechnung{
@@ -21,6 +23,7 @@ classDiagram
         +long produktStandortAnpassen(produktID,Standtort)
         +long produktErstellen(geraeteTyp,zustandsList)
         +void zustandsListAnpassen(zustandsList)
+        +void zustandsListAnpassen(zustandsList,verarbeitungsart)
     }
 
     Angebot ..> PreisBerechnung
