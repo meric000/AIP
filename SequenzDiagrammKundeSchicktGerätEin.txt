@@ -34,12 +34,11 @@ sequenceDiagram
     Kunde ->> KUI: Kunde nimmt Angebot an
 
     KUI ->> A: uebermitteleProduktAnWeiterverarbeitung(angebotID)
+    deactivate KUI
     activate A
     A ->> A: bezahleKunden(cID,preis,bezahlungsoption) startet Sequenz Bezahlung
-    deactivate KUI
     A ->> PW: erstelleVerarbeitungsauftrag(produktID)
     deactivate A
-    activate PW
-    deactivate PW
+
 
 
