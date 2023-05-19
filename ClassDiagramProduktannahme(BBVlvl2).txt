@@ -8,6 +8,7 @@ classDiagram
         +void bezahleKunde(cID,Preis)
         +void angebotAktualisieren()
         +void uebermitteleProduktAnWeiterverarbeitung(angebotID)
+        +void bezahleKunden(cID,preis,bezahlungsoption)
     }
     
     class PreisBerechnung{
@@ -30,6 +31,7 @@ classDiagram
     Angebot -- Produkt
 
     note for Angebot "Finanz-Interface"
+    note for Angebot "Paypal"
     note for Produkt  "Mitarbeiter-UI"
     note for Angebot "ERS Kunden-UI"
     note for Produkt "Produktverarbeitung"

@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor Kunde
+    participant KUI as Kunden-UI
+    participant U as User
+
+    Kunde ->> KUI: Nutzer sendet Nutzername und Passwort
+    activate KUI
+    KUI ->> U: validateLogin(username,password)
+    activate U
+    
+    alt valid
+        U ->> KUI: Nutzer ist angemeldet
+        KUI ->> Kunde: Profil wird dargestellt
+    else invalid
+        U ->> KUI: Invalid login error
+        deactivate U
+        KUI ->> Kunde: Anfrage zum erneuten Anmelden
+        deactivate KUI
+    end
+
+    Kunde ->> KUI: Nutzer navigiert zu Bezahlungsoptionen und sendet Bezahladresse
+    activate KUI
+    KUI ->> U: bezahlungsoptionhinzufügen(bezahlungsoption,bezahlungsadresse)
+    activate U
+    U ->> KUI: Bezahlungsoption hinzugefügt
+    deactivate U
+    KUI ->> Kunde: Bezahlungsoption wird dargestellt
+    deactivate KUI

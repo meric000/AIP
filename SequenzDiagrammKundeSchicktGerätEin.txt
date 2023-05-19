@@ -35,6 +35,7 @@ sequenceDiagram
 
     KUI ->> A: uebermitteleProduktAnWeiterverarbeitung(angebotID)
     activate A
+    A ->> A: bezahleKunden(cID,preis,bezahlungsoption) startet Sequenz Bezahlung
     deactivate KUI
     A ->> PW: erstelleVerarbeitungsauftrag(produktID)
     deactivate A

@@ -1,0 +1,17 @@
+sequenceDiagram
+    actor Kunde
+    participant A as Angebot
+    participant P as Paypal
+    participant F as Finanzsystem
+
+    
+    
+    alt Paypal
+        A ->> P: neueBezahlungAn(preis,adresse)
+        P ->> Kunde: der Eingabepreis wird an den Kunden gesendet
+    else Bankueberweisung
+        A ->> F: neueUeberweisungAn(preis,iban)
+        F ->> Kunde: Überweisung des Eingabepreis an den Kunden
+    end
+
+    

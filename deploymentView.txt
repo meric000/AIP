@@ -2,8 +2,14 @@ C4Deployment
     title Deployment Diagram for ERS
 
     Deployment_Node(UserClient, "UserClient", "Browser: Chrome, Firefox, Edge, Opera, Safari"){
-        Deployment_Node(webbrowser, "Browser", ""){
+        Deployment_Node(webbrowserClient, "Browser", ""){
             Container(webClient, "Web Application Client","React")
+        }
+    }
+
+    Deployment_Node(MitarbeiterClient, "MitarbeiterClient", "Browser: Chrome, Firefox, Edge, Opera, Safari"){
+        Deployment_Node(webbrowserMitarbeiter, "Browser", ""){
+            Container(webMitarbeiter, "Web Application Mitarbeiter","React")
         }
     }
     
@@ -28,7 +34,11 @@ C4Deployment
     
     Rel(api, db, "liest und schreibt zu", "JDBC")
     Rel(reactWebServer, webClient, "Liefert Web Application", "HTTP")
+    Rel(reactWebServer, webMitarbeiter, "Liefert Web Application", "HTTP")
     Rel(webClient, api, "stellt Anfragen an", "REST")
+    Rel(webMitarbeiter, api,"stellt Anfragen an","REST")
+
+    UpdateRelStyle(reactWebServer, webMitarbeiter, $offsetY="-40")
     
 
     
