@@ -1,0 +1,34 @@
+C4Deployment
+    title Deployment Diagram for ERS
+
+    Deployment_Node(UserClient, "UserClient", "Browser: Chrome, Firefox, Edge, Opera, Safari"){
+        Deployment_Node(webbrowser, "Browser", ""){
+            Container(webClient, "Web Application Client","React")
+        }
+    }
+    
+    Deployment_Node(ERSWebApp, "ERSWebApplication", "Ubuntu 16.04 LTS 32 GB RAM"){
+        Deployment_Node(react, "WebServerNodeJS", "React 17.0"){
+            Container(reactWebServer, "React Web Application", "Node.js")
+        }
+    }
+
+    Deployment_Node(ers, "ERS","Backend"){
+        Deployment_Node(spring, "ERS Spring Application", "Ubuntu 16.04 LTS 32 GB RAM"){
+            Container(api, "API Server", "Java and Spring")
+        }
+    
+        Deployment_Node(ersdb, "ERS-DB", "Ubuntu 16.04 LTS 32 GB RAM"){
+            Deployment_Node(oracle, "Oracle - Primary", "Oracle 12c"){
+                ContainerDb(db, "Database", "Relational Database Schema")
+            }
+        }
+    }
+
+    
+    Rel(api, db, "liest und schreibt zu", "JDBC")
+    Rel(reactWebServer, webClient, "Liefert Web Application", "HTTP")
+    Rel(webClient, api, "stellt Anfragen an", "REST")
+    
+
+    
