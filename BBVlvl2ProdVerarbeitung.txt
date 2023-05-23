@@ -1,6 +1,6 @@
 classDiagram
 
-    class ProduktWeiterverarbeiten{
+    class VerarbeitungsVerwaltung{
         +void erstelleVerarbeitungsauftrag(produktID)
     }
 
@@ -10,7 +10,7 @@ classDiagram
         +void erstelleReclclingAuftrag(ersatzteilID,Anzahl)
     }
 
-    class VerkaufVerwanlung{
+    class VerkaufVerwaltung{
         +Preis ermittleVerkaufspreis(produktID)
         +void produktEinpflegen(produktID)
         +void erstelleNeuenVersandauftrag(produktID, adresse)
@@ -25,11 +25,11 @@ classDiagram
 
     }
 
-    ProduktWeiterverarbeiten -- ReclcingVerwaltung
-    ProduktWeiterverarbeiten -- VerkaufVerwanlung
+    VerarbeitungsVerwaltung -- ReclcingVerwaltung 
+    VerarbeitungsVerwaltung -- VerkaufVerwaltung
     AufbreitungsVerwaltung -- ReclcingVerwaltung
-    AufbreitungsVerwaltung -- VerkaufVerwanlung
-    ProduktWeiterverarbeiten-- AufbreitungsVerwaltung
+    AufbreitungsVerwaltung -- VerkaufVerwaltung 
+    VerarbeitungsVerwaltung-- AufbreitungsVerwaltung
 
     note for ReclcingVerwaltung "ERP-System"
-    note for VerkaufVerwanlung "Verkaufsplattform"
+    note for VerkaufVerwaltung "Verkaufsplattform"
